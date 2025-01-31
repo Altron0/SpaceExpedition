@@ -10,9 +10,12 @@ public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
     Vector2 UnlimitedLocalPosition;
     Vector2 clamp;
     public Vector2 localPositionEnd;
+
+
     public void Awoke(){
         transform.parent.TryGetComponent(out RectTransform parentTransform);
         Size = parentTransform.rect.size;
+        Debug.Log("Playground Active!");
     }
     
     public void OnDrag(PointerEventData mouse){

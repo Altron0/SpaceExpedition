@@ -8,24 +8,26 @@ public class GameController : MonoBehaviour
     [SerializeField] JoystickController right;
     [SerializeField] Rigidbody cube;
     [SerializeField, Range(0, 1)] float mul;
+    [SerializeField, Range(0, 100)] float mulVectorRotate;
+    [SerializeField, Range(0, 100)] float mulVectorUp;
+
 
     void Start()
     {
 
     }
-    void Update()
+    void Update() 
     {
-        
+
     }
     void FixedUpdate()
     {
-            Vector3 moveVector =    (cube.transform.right * left.localPositionEnd.x) + 
-                                    (Vector3.up * right.localPositionEnd.y) + 
+        Vector3 moveVector = (cube.transform.right * left.localPositionEnd.x) +
+                                    (Vector3.up * right.localPositionEnd.y / mulVectorUp) +
                                     (cube.transform.forward * left.localPositionEnd.y);
 
-         cube.position += moveVector*mul;
+        cube.position += moveVector * mul
 
-         cube.transform.Rotate(Vector3.up * right.localPositionEnd.x);
-
+        cube.transform.Rotate(Vector3.up * right.localPositionEnd.x / mulVectorRotate);
     }
 }
