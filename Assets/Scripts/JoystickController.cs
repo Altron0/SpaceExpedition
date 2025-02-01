@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+/// <summary>
+/// движение контроллера внутри джостика
+/// </summary>
 public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     Vector2 Size;
@@ -15,9 +17,9 @@ public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
     public void Awoke(){
         transform.parent.TryGetComponent(out RectTransform parentTransform);
         Size = parentTransform.rect.size;
-        Debug.Log("Playground Active!");
     }
-    
+
+
     public void OnDrag(PointerEventData mouse){
 
         parentPosition = transform.parent.position;
@@ -37,6 +39,7 @@ public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
         transform.localPosition = localPositionEnd;
         
     }
+
 
     public void OnEndDrag(PointerEventData mouse){
 
