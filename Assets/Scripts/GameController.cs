@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
-/// <summary>
-/// Move cube OSI
-/// </summary>
 public class GameController : MonoBehaviour
 {
     [SerializeField] JoystickController left;
@@ -19,15 +17,18 @@ public class GameController : MonoBehaviour
     {
 
     }
-    void Update() 
+    void Update()
     {
         Vector3 moveVector = (cube.transform.right * left.localPositionEnd.x) +
                         (cube.transform.up * right.localPositionEnd.y) +
                         (cube.transform.forward * left.localPositionEnd.y);
+
+        cube.position += moveVector * mul;
+
+        cube.transform.Rotate(Vector3.up * right.localPositionEnd.x / mulVectorRotate);
+
     }
     void FixedUpdate()
     {
-        cube.transform.Rotate(Vector3.up * right.localPositionEnd.x / mulVectorRotate);
-        cube.position += moveVector * mul;
     }
 }
