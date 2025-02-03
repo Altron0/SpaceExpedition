@@ -8,9 +8,13 @@ using UnityEngine.EventSystems;
 public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     Vector2 Size;
+
     Vector2 parentPosition;
+
     Vector2 UnlimitedLocalPosition;
+
     Vector2 clamp;
+
     public Vector2 localPositionEnd;
 
 
