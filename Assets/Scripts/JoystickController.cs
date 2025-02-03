@@ -8,16 +8,21 @@ using UnityEngine.EventSystems;
 public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     Vector2 Size;
+
     Vector2 parentPosition;
+    Vector2 childPosition;
+    
     Vector2 UnlimitedLocalPosition;
+
     Vector2 clamp;
+
     public Vector2 localPositionEnd;
     
     
     
 
 
-    public void Awoke()
+    void Start()
     {
         transform.parent.TryGetComponent(out RectTransform parentTransform);
         Size = parentTransform.rect.size;
@@ -27,13 +32,13 @@ public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnDrag(PointerEventData mouse){
 
         parentPosition = transform.parent.position;
-        UnlimitedLocalPosition = (parentPosition - mouse.position) / (-2.25f);
+        childPosition = mouse.position;
 
-        Awoke();
+        UnlimitedLocalPosition = -(parentPosition - childPosition) / (2.5f);
 
         clamp = new Vector2(
             Mathf.Abs(UnlimitedLocalPosition.normalized.x), 
-            Mathf.Abs(UnlimitedLocalPosition.normalized.y)) * (Size / 2);
+            Mathf.Abs(UnlimitedLocalPosition.normalized.y)) * (Size / 2.5f);
 
         localPositionEnd = new Vector2(
             Mathf.Clamp(UnlimitedLocalPosition.x, -clamp.x, clamp.x),
@@ -41,7 +46,7 @@ public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
             );
 
         transform.localPosition = localPositionEnd;
-        
+
     }
 
 

@@ -21,7 +21,7 @@ public class TimeAir : MonoBehaviour
         {
             _timeLeft -= Time.deltaTime;
             timeText.fillAmount = _timeLeft / time;
-            yield return null;
+            yield return new WaitForSeconds(1);
         }
     }
 
@@ -30,10 +30,11 @@ public class TimeAir : MonoBehaviour
     void Start()
     {
         _timeLeft = time;
-        StartCoroutine(StartTime());
+        
     }
 
     void Update()
     {
+        StartCoroutine(StartTime());
     }
 }
