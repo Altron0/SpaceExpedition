@@ -18,9 +18,10 @@ public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
     public Vector2 localPositionEnd;
 
 
-    public void Awoke(){
+    void Start(){
         transform.parent.TryGetComponent(out RectTransform parentTransform);
         Size = parentTransform.rect.size;
+        Debug.Log("AWOKE: " + gameObject.name);
     }
 
 
@@ -28,8 +29,6 @@ public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
 
         parentPosition = transform.parent.position;
         UnlimitedLocalPosition = (parentPosition - mouse.position) / (-2.25f);
-
-        Awoke();
 
         clamp = new Vector2(
             Mathf.Abs(UnlimitedLocalPosition.normalized.x), 
