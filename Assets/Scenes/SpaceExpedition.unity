@@ -2257,15 +2257,15 @@ MonoBehaviour:
   left: {fileID: 2069063063}
   right: {fileID: 1732179190}
   speed: 0.1
-  rotationSpeed: 50
-  verticalSpeed: 50
+  rotationSpeed: 1
+  verticalSpeed: 1
   oxygenBar: {fileID: 190991061}
   fuelBar: {fileID: 1890190848}
   continueUsingOxygen: 1
   asteroid_prefab: {fileID: 6964047867269440794, guid: 1d40a61056376725fb100f34133eb8b7, type: 3}
   asteroidKeeper: {fileID: 379364863}
-  directionZone: 1408
-  asteroidsSpawnDelay: 0.01
+  directionZone: 1027
+  asteroidsSpawnDelay: 5
   continueSpawningAsteroids: 1
   cube: {fileID: 518181763}
 --- !u!1 &468927533

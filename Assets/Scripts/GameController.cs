@@ -37,39 +37,43 @@ public class GameController : MonoBehaviour
         Gizmos.DrawWireSphere(Vector3.zero, directionZone);
     }
 
+
     void Start()
     {
         StartCoroutine(SpawnAndLaunchAsteroids());
         StartCoroutine(UseOxygen());
-        //StartCoroutine(UseFuel());
+
     }
 
     void Update()
     {
         MoveCharacter();
+        ConsumptionFuel();
     }
 
     void FixedUpdate()
     {
 
     }
+
     void MoveCharacter()
     {
         Vector3 moveVector = (cube.transform.right * left.localPositionEnd.x) +
-        (cube.transform.up * right.localPositionEnd.y) +
+        ((cube.transform.up * right.localPositionEnd.y / 100f) * verticalSpeed) +
         (cube.transform.forward * left.localPositionEnd.y);
 
-        cube.transform.Rotate(Vector3.up * right.localPositionEnd.x / rotationSpeed);
+        cube.transform.Rotate((Vector3.up * right.localPositionEnd.x / 100) * rotationSpeed);
+
         cube.velocity += moveVector * speed;
     }
 
 
-//rr.gg.bb.aa
-//af.cd.13.08
-//bc.db.ab
+    //rr.gg.bb.aa
+    //af.cd.13.08
+    //bc.db.ab
 
 
-    IEnumerator SpawnAndLaunchAsteroids(){
+    IEnumerator SpawnAndLaunchAsteroids() {
 
         GameObject asteroid;
         Vector3 randomSphere;
@@ -77,14 +81,14 @@ public class GameController : MonoBehaviour
         while (continueSpawningAsteroids)
         {
 
-            for(int i = 0; i < 1; i++) {
+            for (int i = 0; i < 1; i++) {
                 asteroid = Instantiate(asteroid_prefab, Random.onUnitSphere * 2500, Quaternion.identity);
 
                 asteroid.transform.parent = asteroidKeeper;
                 asteroid.TryGetComponent(out Rigidbody rb);
 
                 randomSphere = Random.insideUnitSphere;
-                asteroid.transform.Rotate(randomSphere*directionZone);
+                asteroid.transform.Rotate(randomSphere * directionZone);
 
                 rb.velocity = asteroid.transform.forward * 100;
 
@@ -96,15 +100,28 @@ public class GameController : MonoBehaviour
 
     }
 
-    void UseFuel(){
-            Fuel -= 0.1f;
 
-            if(Fuel == 0)
-            {
-                fuelBar.visibleCell -= 1;
-                Fuel++;
-            }
+    void UseFuel()
+    {
+        fuelBar.visibleCell -= 1;
     }
+
+    void ConsumptionFuel()
+    {
+        if (right.localPositionEnd != Vector2.zero || left.localPositionEnd != Vector2.zero) 
+        {
+            Fuel -= 0.001f;
+
+            if(Fuel <= 0)
+            {
+                UseFuel();
+                Fuel = 1f;
+            }
+        }
+        
+
+    }
+
 
     IEnumerator UseOxygen() {
         while (continueUsingOxygen) {
