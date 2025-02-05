@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour
         Gizmos.DrawWireSphere(Vector3.zero, directionZone);
     }
 
+
     void Start()
     {
         StartCoroutine(SpawnAndLaunchAsteroids());
@@ -81,12 +82,12 @@ public class GameController : MonoBehaviour
     }
 
 
-//rr.gg.bb.aa
-//af.cd.13.08
-//bc.db.ab
+    //rr.gg.bb.aa
+    //af.cd.13.08
+    //bc.db.ab
 
 
-    IEnumerator SpawnAndLaunchAsteroids(){
+    IEnumerator SpawnAndLaunchAsteroids() {
 
         GameObject asteroid;
         Vector3 randomSphere;
@@ -129,6 +130,23 @@ public class GameController : MonoBehaviour
         if(fuelBar.visibleCell == 0)
             Application.Quit();
     }
+
+    void ConsumptionFuel()
+    {
+        if (right.localPositionEnd != Vector2.zero || left.localPositionEnd != Vector2.zero) 
+        {
+            Fuel -= 0.001f;
+
+            if(Fuel <= 0)
+            {
+                UseFuel();
+                Fuel = 1f;
+            }
+        }
+        
+
+    }
+
 
     IEnumerator UseOxygen() {
         while (continueUsingOxygen) {
