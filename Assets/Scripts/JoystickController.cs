@@ -21,7 +21,6 @@ public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
     void Start(){
         transform.parent.TryGetComponent(out RectTransform parentTransform);
         Size = parentTransform.rect.size;
-        Debug.Log("AWOKE: " + gameObject.name);
     }
 
 
