@@ -1,6 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.UIElements;
+using UnityEditor;
 
 public class BalckholeController : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class BalckholeController : MonoBehaviour
 
     private void OnTriggerEnter(Collider obj){
 
-        obj.transform.position = teleportationDestination.position + Random.onUnitSphere * 50;
-
+        if(obj.tag != "Blackhole")
+        {
+            obj.transform.position = (teleportationDestination.position + UnityEngine.Random.onUnitSphere * 10 * obj.transform.localScale.magnitude);
+        }
     }
 }

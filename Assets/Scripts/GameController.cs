@@ -38,7 +38,6 @@ public class GameController : MonoBehaviour
     [SerializeField] Button afterburnerButton;
     bool afterburnerButtonPressed;
 
-
     void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(Vector3.zero, 2500f);
@@ -74,6 +73,8 @@ public class GameController : MonoBehaviour
         Vector3 moveVelocity = speed * ((cube.transform.right * left.localPositionEnd.x) +
         (cube.transform.up * right.localPositionEnd.y) +
         (cube.transform.forward * left.localPositionEnd.y));
+
+
         Vector3 afterburnerVelocity = Convert.ToInt32(afterburnerButtonPressed) * afterburnerSpeed * moveVelocity.normalized;
 
         cube.transform.Rotate(Vector3.up * right.localPositionEnd.x / rotationSpeed);
