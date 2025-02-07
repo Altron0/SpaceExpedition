@@ -73,7 +73,7 @@ public class GameController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.white;
+        Gizmos.color = Color.white; 
         Gizmos.DrawWireSphere(transform.position, 2500f);
     }
 
