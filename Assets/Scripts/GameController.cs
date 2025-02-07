@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
     //Asteroids
     [SerializeField] GameObject asteroid_prefab;
     [SerializeField] Transform asteroidKeeper;
-    [SerializeField, Range(0, 2500f)] float directionZone;
+    [SerializeField, Range(0, 2500f)] float asteroidSpawnZone;
     [SerializeField, Range(0, 1000f)] float asteroidsSpawnDelay;
     [SerializeField] bool continueSpawningAsteroids = true;
     int countAsteroids;
@@ -34,16 +34,19 @@ public class GameController : MonoBehaviour
     //Game
     [SerializeField] Rigidbody cube;
 
+
     //Afterburner button
     [SerializeField] Button afterburnerButton;
     bool afterburnerButtonPressed;
 
+    [SerializeField] GameOver_Controller GameOverController;
+
     void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(Vector3.zero, 2500f);
-        Gizmos.DrawWireSphere(Vector3.zero, directionZone);
-    }
+        Gizmos.DrawWireSphere(Vector3.zero, asteroidSpawnZone);
 
+    }
 
     void Start()
     {
@@ -58,7 +61,8 @@ public class GameController : MonoBehaviour
         SpendFuel();
     }
 
-    void AfterburnerButtonPress(){
+    void AfterburnerButtonPress()
+    {
         afterburnerButtonPressed = !afterburnerButtonPressed;
     }
 
@@ -66,7 +70,6 @@ public class GameController : MonoBehaviour
     {
 
     }
-
 
     void MoveCharacter()
     {
@@ -77,18 +80,13 @@ public class GameController : MonoBehaviour
 
         Vector3 afterburnerVelocity = Convert.ToInt32(afterburnerButtonPressed) * afterburnerSpeed * moveVelocity.normalized;
 
-        cube.transform.Rotate(Vector3.up * right.localPositionEnd.x / rotationSpeed);
+        cube.angularVelocity += Vector3.up * right.localPositionEnd.x / rotationSpeed;
 
         cube.velocity += moveVelocity + afterburnerVelocity;
     }
 
-
-    //rr.gg.bb.aa
-    //af.cd.13.08
-    //bc.db.ab
-
-
-    IEnumerator SpawnAndLaunchAsteroids() {
+    IEnumerator SpawnAndLaunchAsteroids()
+    {
 
         GameObject asteroid;
         Vector3 randomSphere;
@@ -103,9 +101,9 @@ public class GameController : MonoBehaviour
                 asteroid.TryGetComponent(out Rigidbody rb);
 
                 randomSphere = UnityEngine.Random.insideUnitSphere;
-                asteroid.transform.Rotate(randomSphere*directionZone);
+                asteroid.transform.Rotate(randomSphere * asteroidSpawnZone);
 
-                rb.velocity = asteroid.transform.forward * 100;
+                rb.velocity = asteroid.transform.forward * 100f;
 
             }
 
@@ -115,7 +113,8 @@ public class GameController : MonoBehaviour
 
     }
 
-    void SpendFuel(){
+    void SpendFuel()
+    {
         if(right.localPositionEnd != Vector2.zero || left.localPositionEnd != Vector2.zero){
             Fuel -= 0.002f + Convert.ToInt32(afterburnerButtonPressed) / 100;
 
@@ -126,7 +125,8 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void UseFuel(){
+    void UseFuel()
+    {
         fuelBar.visibleCell -= 1;
         if(fuelBar.visibleCell == 0)
             Application.Quit();
@@ -144,17 +144,13 @@ public class GameController : MonoBehaviour
                 Fuel = 1f;
             }
         }
-        
-
     }
 
-
-    IEnumerator UseOxygen() {
+    IEnumerator UseOxygen()
+    {
         while (continueUsingOxygen) {
-            yield return new WaitForSeconds(12);
+            yield return new WaitForSeconds(12f);
             oxygenBar.visibleCell -= 1;
-            if(oxygenBar.visibleCell == 0) Application.Quit();
         }
     }
-
 }

@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 8428551925079870304}
   - component: {fileID: 3831131703751960122}
   - component: {fileID: 6308152962511253857}
-  - component: {fileID: 1475889344355655564}
+  - component: {fileID: -2673835766557244371}
   m_Layer: 0
   m_Name: FigureOxygen
   m_TagString: Untagged
@@ -356,7 +356,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1475889344355655564
+--- !u!114 &-2673835766557244371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -365,8 +365,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9009442171582873879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c3fdf78178406c048d4fa10c269c5a7, type: 3}
+  m_Script: {fileID: 11500000, guid: bf361e2d6503b38c98dd994e36f627d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bar: {fileID: 0}
+  bar: {fileID: 0}
   Filling: {fileID: 0}
