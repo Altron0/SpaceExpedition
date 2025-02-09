@@ -39,6 +39,8 @@ public class GameController : MonoBehaviour
     [SerializeField] Button afterburnerButton;
     bool afterburnerButtonPressed;
 
+
+    //Game_Over_Controller
     [SerializeField] GameOver_Controller GameOverController;
 
     void OnDrawGizmos()
@@ -58,7 +60,8 @@ public class GameController : MonoBehaviour
     void Update()
     {
         MoveCharacter();
-        SpendFuel();
+        c
+        CheckResourses();
     }
 
     void AfterburnerButtonPress()
@@ -69,6 +72,16 @@ public class GameController : MonoBehaviour
     void FixedUpdate()
     {
 
+    }
+
+    void CheckResourses()
+    {
+        if (GameOverController.isFullBar) 
+        {
+            GameOverController.isFullBar = false;
+            StartCoroutine(UseOxygen());
+            SpendFuel();
+        }
     }
 
     void MoveCharacter()

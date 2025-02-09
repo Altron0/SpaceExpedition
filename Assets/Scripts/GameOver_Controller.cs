@@ -12,6 +12,8 @@ public class GameOver_Controller : MonoBehaviour
 
     public bool buttonPressed = false;
 
+    public bool isFullBar = false;
+
     void Update(){
         checkBar();
         ConstructionResours();
@@ -30,6 +32,7 @@ public class GameOver_Controller : MonoBehaviour
         if(buttonPressed){
             oxygenBar.visibleCell = 12;
             fuelBar.visibleCell = 12;
+            isFullBar = true;
             buttonPressed = false;
         }
     }

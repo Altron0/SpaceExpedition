@@ -42,7 +42,6 @@ public class JoystickController : MonoBehaviour, IDragHandler, IEndDragHandler
             );
 
         handle.localPosition = localPositionEnd;
-        
     }
 
 
