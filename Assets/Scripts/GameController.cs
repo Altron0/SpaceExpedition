@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField, Range(0, 1f)] float speed;
     [SerializeField, Range(0, 100f)] float afterburnerSpeed;
-    [SerializeField, Range(0, 100f)] float rotationSpeed;
+    [SerializeField, Range(0, 1000f)] float rotationSpeed;
     [SerializeField, Range(0, 100f)] float verticalSpeed;
 
     /*Bars*/
@@ -60,7 +60,6 @@ public class GameController : MonoBehaviour
     void Update()
     {
         MoveCharacter();
-        c
         CheckResourses();
     }
 
