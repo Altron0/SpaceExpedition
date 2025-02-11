@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System;
+using System.Threading.Tasks;
 
 public class FileFuckery : MonoBehaviour
 {
-    public string path = "";
+    public string path = "@C:\\";
     public string nameFile = "test.txt";
 
     [SerializeField] InputField textField;
@@ -15,7 +17,7 @@ public class FileFuckery : MonoBehaviour
     }
 
     void Save(string fileName, string data){
-        StreamWriter sw = new StreamWriter(path + "/" + fileName);
+        StreamWriter sw = new StreamWriter(path + "/" + fileName, true);
         sw.Write(data);
         sw.Close();
     }
