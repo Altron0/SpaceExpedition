@@ -16,9 +16,6 @@ public class ResoursesConnector : MonoBehaviour
     public void RandomizePosition() {
             transform.position = Random.insideUnitSphere * 2250f;
     }
-    public void fillingResuorses(){
-        bar.visibleCell = 12;
-    }
 
     void OnTriggerEnter(Collider obj){
         EnteractionButton.gameObject.SetActive(true);
@@ -27,7 +24,7 @@ public class ResoursesConnector : MonoBehaviour
 
     void FillResource()
     {
-        fillingResuorses();
+        bar.visibleCell = 12;
         Destroy(gameObject);
     }
 
